@@ -5,7 +5,15 @@
       <span>日期：{{ formatTime(dataContent.createDate) }}</span>
       <span>浏览：{{ dataContent.scanNumber }}</span>
       <a href="#dataform-contianer">评论：{{ dataContent.commentNumber }}</a>
-      <a href="">{{ dataContent.category.name }}</a>
+      <router-link
+        :to="{
+          name: `BlogCategory`,
+          params: {
+            categoryId: dataContent.category.id,
+          },
+        }"
+        >{{ dataContent.category.name }}</router-link
+      >
     </aside>
     <div v-html="dataContent.htmlContent" class="markdown-body"></div>
   </div>

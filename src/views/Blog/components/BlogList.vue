@@ -1,9 +1,9 @@
 <template>
   <div class="bloglist-container">
-    <ul class="data-container">
+    <ul class="data-container" ref="mainScroll">
       <li class="data-content" v-for="item in data.rows" :key="item.id">
         <a href="" class="img" v-if="item.thumb">
-          <img :src="item.thumb" alt="" />
+          <img v-lazy="item.thumb" alt="" />
         </a>
         <div class="content">
           <router-link :to="{ name: 'BlogDetail', params: { id: item.id } }"
@@ -84,6 +84,9 @@ export default {
         });
       }
     },
+    scrolled() {
+      this.$bus.$emit("mainScroll", this.$refs.mainScroll);
+    },
   },
   computed: {
     routeInfo() {
@@ -104,6 +107,12 @@ export default {
       this.data = await this.fetchData();
       this.loadingShow = false;
     },
+  },
+  mounted() {
+    this.$refs.mainScroll.addEventListener("scroll", this.scrolled);
+  },
+  beforeDestroy() {
+    this.$refs.mainScroll.removeEventListener("scroll", this.scrolled);
   },
 };
 </script>

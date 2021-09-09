@@ -8,6 +8,10 @@ import "./eventBus";
 import { showMessage } from "./utils/index.js";
 Vue.prototype.$showMessage = showMessage;
 
+import vlazy from "./directives/lazy.js";
+console.log(vlazy);
+Vue.directive("lazy", vlazy);
+
 new Vue({
   router,
   render: (h) => h(App),

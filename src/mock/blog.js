@@ -27,7 +27,7 @@ Mock.mock(/^\/api\/blogs(\?.+)?$/, "get", function(options) {
           },
           "scanNumber|0-3000": 0,
           "commentNumber|0-300": 30,
-          thumb: Mock.Random.image("300x250", "#000", "#fff", "I am an image"),
+          thumb: `@image(300x250, @color, @color, I am an image)`,
 
           createDate: `@date('T')`,
         },
@@ -73,10 +73,7 @@ Mock.mock(/^\/api\/blog\/[^/]+$/, "get", {
         anchor: "article-md-title-7",
       },
     ],
-    "thumb|1": [
-      Mock.Random.image("300x250", "#000", "#fff", "Random Image"),
-      null,
-    ],
+    "thumb|1": [`@image(300x250, @color, #fff, @title)`, null],
     htmlContent: `<blockquote>
   <p>阅读本文，你需要首先知道：</p><ol>
   <li>浏览器的同源策略</li>

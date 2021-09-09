@@ -41,7 +41,7 @@ export default {
   mounted() {
     this.$refs.container.addEventListener("scroll", this.scrolled);
   },
-  destroyed() {
+  beforeDestroy() {
     this.$refs.container.removeEventListener("scroll", this.scrolled);
   },
 };
