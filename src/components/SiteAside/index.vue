@@ -1,12 +1,15 @@
 <template>
   <div class="site-container">
-    <Avatar
-      src="https://img2.baidu.com/it/u=3366578486,423528972&fm=26&fmt=auto&gp=0.jpg"
-    />
-    <h1 class="title">扫地僧🧹</h1>
+    <Avatar :src="data.avatar" />
+    <h1 class="title">{{ data.siteTitle || "马云" }}</h1>
     <Menu />
-    <Contact />
-    <p class="com">京ICP备12138号</p>
+    <Contact
+      :userName="data.githubName"
+      :email="data.mail"
+      :QQ="data.qq"
+      :weChat="data.weixin"
+    />
+    <p class="com">{{ data.icp }}</p>
   </div>
 </template>
 
@@ -14,14 +17,14 @@
 import Avatar from "@/components/Avatar";
 import Contact from "./Contact";
 import Menu from "./Menu";
-
+import { mapState } from "vuex";
 export default {
   components: {
     Avatar,
     Contact,
     Menu,
   },
-  props: {},
+  computed: mapState("setting", ["data"]),
 };
 </script>
 

@@ -1,9 +1,23 @@
 <template>
-  <h1>Message</h1>
+  <div class="message-container" ref="container">
+    <Message />
+  </div>
 </template>
 
 <script>
-export default {};
+import Message from "@/components/MessageArea";
+export default {
+  components: {
+    Message,
+  },
+};
 </script>
 
-<style></style>
+<style lang="less" scoped>
+.message-container {
+  width: 80%;
+  height: 100%;
+  padding: 30px;
+  overflow-y: auto;
+}
+</style>

@@ -32,9 +32,10 @@
         :limit="routeInfo.limit"
         :visibleNumber="10"
         @pageChange="handlePageChange"
+        v-if="data.rows"
       />
     </ul>
-
+    <Empty v-if="!data.rows && !loadingShow" />
     <Loader v-if="loadingShow" />
   </div>
 </template>
@@ -45,10 +46,12 @@ import { getBlogs } from "@/api/blog.js";
 import Pager from "@/components/Pager";
 import { formatTime } from "@/utils";
 import Loader from "@/components/Loader";
+import Empty from "@/components/Empty";
 export default {
   components: {
     Pager,
     Loader,
+    Empty,
   },
   mixins: [fetchData({})],
 

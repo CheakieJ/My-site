@@ -4,15 +4,15 @@ import "./styles/global.less";
 import router from "./router";
 import "./mock";
 import "./eventBus";
-
+import store from "./store";
 import { showMessage } from "./utils/index.js";
-Vue.prototype.$showMessage = showMessage;
-
 import vlazy from "./directives/lazy.js";
-console.log(vlazy);
-Vue.directive("lazy", vlazy);
+store.dispatch("setting/fetchSetting");
 
+Vue.prototype.$showMessage = showMessage;
+Vue.directive("lazy", vlazy);
 new Vue({
   router,
+  store,
   render: (h) => h(App),
 }).$mount("#app");

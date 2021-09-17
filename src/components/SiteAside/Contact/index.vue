@@ -9,7 +9,7 @@
       <span class="con">{{ email }}</span>
     </a>
     <a
-      href="tencent://Message/?Uin=1515421662&websiteName=q-zone.qq.com&Menu=yes"
+      :href="`tencent://Message/?Uin=${QQ}&websiteName=q-zone.qq.com&Menu=yes`"
     >
       <Icon type="qq" />
       <span class="con">{{ QQ }}</span>
@@ -42,19 +42,19 @@ export default {
   props: {
     userName: {
       type: String,
-      default: "Cheakie",
+      default: "mayun",
     },
     email: {
       type: String,
-      default: "cheakie@163.com",
+      default: "mayun@name.com",
     },
     QQ: {
       type: Number,
-      default: 1515421662,
+      default: 123456789,
     },
     weChat: {
       type: String,
-      default: "CheakieJ",
+      default: "jackma",
     },
   },
 };

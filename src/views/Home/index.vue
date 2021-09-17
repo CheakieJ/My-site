@@ -32,23 +32,24 @@
         @click="change((index = i))"
       ></li>
     </ul>
-    <Loader v-if="loadingShow" />
+    <Loader v-if="loading" />
   </div>
 </template>
 
 <script>
-import { getBanners } from "@/api/banner.js";
+// import { getBanners } from "@/api/banner.js";
 import CarouselItem from "./CarouselItem.vue";
 import Icon from "@/components/Icon";
 import Loader from "@/components/Loader";
-import fetchData from "@/mixins/fetchData.js";
+// import fetchData from "@/mixins/fetchData.js";
+import { mapState } from "vuex";
 export default {
   components: {
     CarouselItem,
     Icon,
     Loader,
   },
-  mixins: [fetchData([])],
+  // mixins: [fetchData([])],
   data() {
     return {
       index: 0,
@@ -56,10 +57,14 @@ export default {
       listenData: false,
     };
   },
+  created() {
+    this.$store.dispatch("banner/fetchBanner");
+  },
   computed: {
     marginTop() {
       return -this.index * this.containerHeight + "px";
     },
+    ...mapState("banner", ["loading", "data"]),
   },
   mounted() {
     this.containerHeight = this.$refs.container.clientHeight;
@@ -88,10 +93,10 @@ export default {
     listenTans() {
       this.listenData = false;
     },
-    async fetchData() {
-      console.log(this.loadingShow);
-      return await getBanners();
-    },
+    // async fetchData() {
+    //   console.log(this.loadingShow);
+    //   return await getBanners();
+    // },
   },
   resizeData() {
     this.containerHeight = this.$refs.container.clientHeight;
